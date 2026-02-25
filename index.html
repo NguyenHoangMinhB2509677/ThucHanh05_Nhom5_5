@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển đổi Video và Infographic</title>
+    <!-- Bootstrap CSS for utilities -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: auto;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            color: #764ba2;
+        }
+        p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-custom {
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .btn-secondary-custom {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+        }
+        .btn-secondary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .btn-round {
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+        .media-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .media-container:hover {
+            transform: translateY(-5px);
+        }
+        .infographic {
+            max-width: 40%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        video {
+            max-width: 50%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .citation {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .circle1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .circle2 {
+            width: 80px;
+            height: 80px;
+            top: 30%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        .circle3 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        .circle4 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        .circle5 {
+            width: 90px;
+            height: 90px;
+            bottom: 10%;
+            right: 25%;
+            animation-delay: 3s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        .floating-triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid rgba(255, 255, 255, 0.15);
+            animation: floatTriangle 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .triangle1 {
+            top: 15%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+        .triangle2 {
+            bottom: 30%;
+            left: 5%;
+            animation-delay: 3s;
+        }
+        .floating-square {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: floatSquare 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .square1 {
+            top: 50%;
+            right: 5%;
+            animation-delay: 0.5s;
+        }
+        .square2 {
+            bottom: 5%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+        @keyframes floatTriangle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(120deg); }
+        }
+        @keyframes floatSquare {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(90deg); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating background elements -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+    <div class="floating-circle circle4"></div>
+    <div class="floating-circle circle5"></div>
+    <div class="floating-triangle triangle1"></div>
+    <div class="floating-triangle triangle2"></div>
+    <div class="floating-square square1"></div>
+    <div class="floating-square square2"></div>
+    
+    <div class="container">
+        <h2 class="text-center mb-4">Infographic và Video</h2>
+        
+        <!-- Buttons for switching -->
+        <div class="text-center mb-4">
+            <button class="btn btn-primary-custom btn-round" onclick="showInfographic()" title="Hiển thị Infographic"><i class="fas fa-image"></i> Infographic</button>
+            <button class="btn btn-secondary-custom btn-round" onclick="showVideo()" title="Hiển thị Video"><i class="fas fa-video"></i> Video</button>
+        </div>
+        
+        <!-- Infographic Section -->
+        <div id="infographic-section" class="media-container">
+            <h3>Infographic</h3>
+            <p><strong>Mô tả:</strong> Infographic minh họa các lợi ích của việc học tập, giúp người xem hiểu rõ hơn về tầm quan trọng của giáo dục.</p>
+            <img src="images\NV2.1_Phan2.png" alt="Infographic minh họa" class="infographic">
+            <p class="citation">Nguồn: Tạo bởi Canva AI</p>
+        </div>
+        
+        <!-- Video Section -->
+        <div id="video-section" class="media-container hidden">
+            <h3><i class="fas fa-play-circle me-2"></i>Video</h3>
+            <p><strong>Mô tả:</strong> Video giới thiệu về lợi ích của học tập, với hình ảnh động và âm thanh để truyền tải thông điệp một cách sinh động.</p>
+            <video controls class="shadow" style="width: 50%; height: 250px; object-fit: contain; border: 3px solid #333; border-radius: 10px;">
+                <source src="images\NV2.2_Phan2.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+            <p class="citation">Nguồn: Chỉnh sửa bởi CapCut</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showInfographic() {
+            document.getElementById('infographic-section').classList.remove('hidden');
+            document.getElementById('video-section').classList.add('hidden');
+        }
+        
+        function showVideo() {
+            document.getElementById('video-section').classList.remove('hidden');
+            document.getElementById('infographic-section').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
